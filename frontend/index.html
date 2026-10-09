@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#17643f" />
+  <meta name="description" content="AgroLens helps farmers screen leaf photos for possible crop diseases, understand next steps, and find official crop insurance resources." />
+  <title>AgroLens — Smarter Insights. Healthier Crops.</title>
+  <link rel="icon" href="/assets/agrolens-mark.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <div class="topline" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="AgroLens home">
+      <img src="/assets/agrolens-mark.svg" alt="" width="47" height="47" />
+      <span class="brand-name">Agro<span>Lens</span></span>
+      <span class="brand-tagline">Smarter insights. Healthier crops.</span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="nav-active" href="#home">Home</a>
+      <a href="#how-it-works">How it works</a>
+      <a href="#farmer-support">Farmer support</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="header-cta" href="#upload-panel">Analyze a leaf <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  </header>
+
+  <main id="home">
+    <section class="hero-wrap">
+      <div class="hero-leaf hero-leaf-left" aria-hidden="true"></div>
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="eyebrow-dot"></span> AGRICULTURE MEETS ARTIFICIAL INTELLIGENCE</div>
+        <h1>Every leaf has a story.<br /><span>Let's read it together.</span></h1>
+        <p class="hero-description">Spot potential crop diseases earlier. Get simple care guidance and discover support resources—all from a photo of your leaf.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#upload-panel">Start free analysis <span aria-hidden="true">→</span></a>
+          <a class="text-button" href="#how-it-works"><span class="play-icon" aria-hidden="true">▷</span> See how it works</a>
+        </div>
+        <div class="trust-note"><span class="trust-icon" aria-hidden="true">✓</span> Designed to be simple, helpful, and farmer-first</div>
+      </div>
+      <div class="hero-art" aria-label="Illustration of healthy crops and a leaf">
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        <div class="hero-art-glow"></div>
+        <div class="floating-chip chip-top"><span class="chip-dot green"></span> Leaf scan ready</div>
+        <div class="hero-leaf-card"><img src="/assets/leaf-sample.svg" alt="Illustration of a leaf with spots" /></div>
+        <div class="floating-chip chip-bottom"><span class="mini-spark" aria-hidden="true">✳</span> AI-assisted screening</div>
+        <div class="hero-sprout sprout-a" aria-hidden="true">✦</div>
+        <div class="hero-sprout sprout-b" aria-hidden="true">✧</div>
+      </div>
+      <div class="handwritten">Healthy crops,<br />stronger farmers <span>↗</span></div>
+    </section>
+
+    <section class="workflow-section" id="how-it-works">
+      <div class="section-heading">
+        <div class="section-kicker">YOUR CROP HEALTH COMPANION</div>
+        <h2>From leaf photo to <span>clear next steps.</span></h2>
+        <p>Three simple steps. Practical information. A little more confidence in the field.</p>
+      </div>
+
+      <div class="workflow-grid">
+        <article class="workflow-card upload-card" id="upload-panel">
+          <div class="card-heading">
+            <div class="step-number">01</div>
+            <div><div class="card-overline">STEP ONE</div><h3>Upload a leaf</h3></div>
+          </div>
+          <p class="card-intro">Choose a clear photo of the affected leaf. Natural light works best.</p>
+          <input id="leaf-file" type="file" accept="image/jpeg,image/png,image/webp,image/bmp" hidden />
+          <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Choose or drop a leaf image">
+            <div class="dropzone-content" id="dropzone-empty">
+              <div class="upload-icon"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 21V5m0 0-6 6m6-6 6 6M6 20v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5"/></svg></div>
+              <strong>Drop your leaf photo here</strong>
+              <span>or <u>browse files</u></span>
+              <small>JPG, PNG, WEBP · up to 10 MB</small>
+            </div>
+            <div class="dropzone-preview" id="dropzone-preview" hidden>
+              <img id="uploaded-preview" alt="Selected leaf preview" />
+              <div class="preview-file"><span class="file-check">✓</span><div><strong id="file-name">leaf-photo.jpg</strong><small id="file-size">Ready to analyze</small></div><button type="button" id="remove-file" aria-label="Remove selected image">×</button></div>
+            </div>
+          </div>
+          <div class="upload-bottom">
+            <div class="privacy-note"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="4" y="8" width="12" height="9" rx="2"/><path d="M7 8V5a3 3 0 0 1 6 0v3"/></svg> Your photo is processed by this app and not saved to a gallery.</div>
+            <button class="analyze-button" id="analyze-button" disabled>Analyze leaf <span aria-hidden="true">→</span></button>
+          </div>
+          <div class="status-message" id="upload-status" role="status" aria-live="polite"></div>
+          <div class="examples-label">NEED A PHOTO TIP?</div>
+          <div class="example-strip">
+            <div class="example-thumb"><img src="/assets/leaf-healthy.svg" alt="Healthy leaf example" /><span>Healthy leaf</span></div>
+            <div class="example-thumb"><img src="/assets/leaf-spot.svg" alt="Leaf spots example" /><span>Leaf spots</span></div>
+            <div class="example-thumb"><img src="/assets/leaf-yellow.svg" alt="Yellowing leaf example" /><span>Yellowing</span></div>
+          </div>
+        </article>
+
+        <div class="flow-arrow arrow-first" aria-hidden="true"><span>→</span></div>
+
+        <article class="workflow-card analysis-card" id="analysis-panel">
+          <div class="card-heading light-heading">
+            <div class="step-number">02</div>
+            <div><div class="card-overline">STEP TWO</div><h3>AI leaf analysis</h3></div>
+            <span class="model-pill"><span></span> MODEL-POWERED</span>
+          </div>
+          <p class="analysis-intro" id="analysis-intro">The model examines visual patterns that may indicate a disease.</p>
+          <div class="image-comparison">
+            <div class="analysis-image-wrap">
+              <div class="image-top-label"><span class="image-label-dot"></span> ORIGINAL</div>
+              <div class="analysis-image original-image" id="analysis-original"><img src="/assets/leaf-sample.svg" alt="Illustrative leaf sample" /></div>
+              <span class="image-caption">Leaf photo</span>
+            </div>
+            <div class="comparison-divider"><span>→</span></div>
+            <div class="analysis-image-wrap">
+              <div class="image-top-label"><span class="heat-legend"></span> HEATMAP</div>
+              <div class="analysis-image heatmap-image" id="analysis-heatmap"><img src="/assets/leaf-sample.svg" alt="Illustrative heatmap preview" /><div class="heat-overlay" aria-hidden="true"></div><div class="heat-center" aria-hidden="true"></div></div>
+              <span class="image-caption">Model attention</span>
+            </div>
+          </div>
+          <div class="attention-legend"><span><i class="legend-blue"></i> Lower</span><span><i class="legend-yellow"></i> Medium</span><span><i class="legend-red"></i> Higher</span><small>Illustrative preview until you analyze a photo</small></div>
+          <div class="analysis-progress" id="analysis-progress" hidden>
+            <div class="progress-line"><span></span></div><div class="progress-copy"><span id="progress-label">Preparing your image…</span><span id="progress-percent">0%</span></div>
+          </div>
+          <div class="model-footnote"><span class="model-pulse"></span><span id="model-note">38-class public plant-disease model · runs on your local machine</span></div>
+        </article>
+
+        <div class="flow-arrow arrow-second" aria-hidden="true"><span>→</span></div>
+
+        <article class="workflow-card results-card" id="results-panel">
+          <div class="card-heading">
+            <div class="step-number">03</div>
+            <div><div class="card-overline">STEP THREE</div><h3>Your crop report</h3></div>
+          </div>
+          <p class="card-intro" id="results-intro">Easy-to-understand insights, practical care steps and support links.</p>
+          <div class="sample-banner" id="sample-banner"><span class="sample-spark">✦</span> EXAMPLE PREVIEW · NOT A REAL DIAGNOSIS</div>
+          <div class="diagnosis-box" id="diagnosis-box">
+            <div class="diagnosis-icon" aria-hidden="true"><svg viewBox="0 0 28 28"><path d="M14 24s-8-4-8-12a8 8 0 0 1 16 0c0 8-8 12-8 12Z"/><path d="M14 22V9m0 7-4-4m4 1 4-4"/></svg></div>
+            <div class="diagnosis-copy"><span class="tiny-label" id="plant-label">DETECTED CROP · TOMATO</span><h4 id="disease-name">Early blight</h4><p id="disease-scientific">Illustrative example only</p></div>
+            <span class="confidence-pill" id="confidence-pill">Preview</span>
+          </div>
+          <div class="care-box">
+            <div class="care-heading"><span class="care-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v5c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></span><div><h4>What can you do?</h4><p id="care-summary">This is only an example. Upload a leaf to receive a model-based result.</p></div></div>
+            <ul id="care-steps"><li>Photograph symptoms in natural light.</li><li>Check nearby plants for similar signs.</li><li>Confirm with a local agriculture expert before treatment.</li></ul>
+          </div>
+          <div class="scheme-box" id="farmer-support">
+            <div class="scheme-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 20h18M5 20V9m4 11V9m6 11V9m4 11V9M3 7l9-4 9 4H3Z"/><path d="M2 22h20"/></svg></div>
+            <div class="scheme-copy"><h4>Farmer support</h4><strong>PMFBY crop insurance</strong><p>Check notified crops and policy rules after crop loss. Official PMFBY helpline: 14447.</p><a href="https://pmfby.gov.in/" target="_blank" rel="noopener noreferrer">Explore official scheme <span aria-hidden="true">↗</span></a></div>
+          </div>
+          <div class="result-actions" id="result-actions" hidden><button class="secondary-button" id="download-report">Download report ↓</button><button class="secondary-button" id="reset-analysis">Analyze another leaf ↻</button></div>
+          <p class="results-disclaimer" id="results-disclaimer">AI screening is not a laboratory diagnosis. Confirm locally before making crop-treatment decisions.</p>
+        </article>
+      </div>
+      <div class="workflow-note"><span class="note-leaf" aria-hidden="true">✳</span> <span><strong>Made for the real world.</strong> AgroLens is an early-screening aid—not a replacement for your local KVK or agriculture officer.</span></div>
+    </section>
+
+    <section class="benefits-section" id="about">
+      <div class="benefit-heading"><div class="section-kicker">BUILT AROUND THE FARMER</div><h2>Useful technology. <span>Real-world purpose.</span></h2></div>
+      <div class="benefit-grid">
+        <div class="benefit-item"><div class="benefit-icon icon-clock"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div><h3>Early insights</h3><p>Screen a leaf photo in a few moments.</p></div></div>
+        <div class="benefit-item"><div class="benefit-icon icon-leaf"><svg viewBox="0 0 24 24"><path d="M21 3C11 3 5 7 5 14c0 3 2 5 5 5 7 0 11-6 11-16Z"/><path d="M3 22c4-7 8-10 14-15"/></svg></div><div><h3>Clear next steps</h3><p>Plain-language guidance, not complex jargon.</p></div></div>
+        <div class="benefit-item"><div class="benefit-icon icon-scheme"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V9m4 12V9m6 12V9m4 12V9M3 7l9-4 9 4H3Z"/></svg></div><div><h3>Support awareness</h3><p>Direct links to official government resources.</p></div></div>
+        <div class="benefit-item"><div class="benefit-icon icon-phone"><svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M10 18h4"/></svg></div><div><h3>Farmer-friendly</h3><p>A clean flow designed for quick understanding.</p></div></div>
+      </div>
+    </section>
+
+    <section class="closing-cta">
+      <div class="closing-copy"><div class="section-kicker">A HEALTHIER HARVEST STARTS WITH A LOOK</div><h2>One leaf can be the<br /><span>start of a better decision.</span></h2><p>Upload a photo, learn what it may indicate, and take your next step with better information.</p><a class="primary-button" href="#upload-panel">Check a leaf now <span aria-hidden="true">→</span></a></div>
+      <div class="closing-art" aria-hidden="true"><div class="closing-sun"></div><div class="hill hill-back"></div><div class="hill hill-mid"></div><div class="hill hill-front"></div><div class="crop-row row-one"></div><div class="crop-row row-two"></div><div class="crop-row row-three"></div><div class="closing-stem"><i></i><i></i><i></i></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><img src="/assets/agrolens-mark.svg" alt="" width="38" height="38" /><div><strong>Agro<span>Lens</span></strong><p>Smarter insights. Healthier crops.</p></div></div>
+    <p class="footer-motto">Technology for stronger farming communities.</p>
+    <div class="footer-links"><a href="https://pmfby.gov.in/" target="_blank" rel="noopener noreferrer">PMFBY official portal ↗</a><a href="#about">About AgroLens</a></div>
+    <div class="footer-bottom"><span>© <span id="current-year">2026</span> AgroLens · Hackathon prototype</span><span>Built with care for the people who grow our food.</span></div>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
